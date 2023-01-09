@@ -28,14 +28,17 @@ class ConfigBase:
         self.PROJ_DB_PATH = os.environ.get('PROJ_DB_PATH')
         self.PROJ_LOGS_DIR = os.path.join(self.PROJ_ROOT_PATH, 'logs')
         self.SQL_URI =  f"sqlite:///{self.PROJ_DB_PATH}socialAggregator.db"
-        self.TWITTER_BEARER_TOKEN = config.get('twitter_bearer_token')
-        self.NICK_TWITTER_URL_BASE = "https://twitter.com/EvryMnRodriguez/status/"
-        self.NICK_TWITTER_ID = config.get('nick_twitter_id')
-        self.NICK_STACK_OVERFLOW_ID = config.get('nick_stack_overflow_id')
-        self.NICK_STACK_OVERFLOW_URL = f"https://api.stackexchange.com/2.2/users/{self.NICK_STACK_OVERFLOW_ID}/questions?site=stackoverflow.com"
-        self.NICK_GITHUB_USERNAME = "costa-rica"
-        self.NICK_GITHUB_TOKEN = config.get("nick_github_token")
-            
+        self.TWITTER_BEARER_TOKEN = config.get('TWITTER_BEARER_TOKEN')
+        self.TWITTER_URL_BASE = config.get('TWITTER_URL_BASE')
+        self.TWITTER_ID = config.get('TWITTER_ID')
+        self.STACK_OVERFLOW_ID = config.get('STACK_OVERFLOW_ID')
+        self.STACK_OVERFLOW_URL = f"https://api.stackexchange.com/2.2/users/{self.STACK_OVERFLOW_ID}/questions?site=stackoverflow.com"
+        self.GITHUB_USERNAME = config.get('GITHUB_USERNAME')
+        self.GITHUB_TOKEN = config.get("GITHUB_TOKEN")
+        self.GOODREADS_ID = config.get('GOODREADS_ID')
+        self.GOODREADS_URL = config.get('GOODREADS_URL')
+        self.SEND_DATA = os.environ.get('SEND_DATA')
+        self.DESTINATION_PASSWORD = config.get('DESTINATION_PASSWORD')
 
 class ConfigLocal(ConfigBase):
 
@@ -43,7 +46,7 @@ class ConfigLocal(ConfigBase):
         super().__init__()
         
     DEBUG = True
-    SA_API_URL = "http://localhost:5001"
+    API_URL = config.get('UPDATE_DESTINATION_URL_LOCAL')
     
             
 
@@ -53,7 +56,7 @@ class ConfigDev(ConfigBase):
         super().__init__()
 
     DEBUG = True
-    SA_API_URL = "http://198.172.1.6"
+    API_URL = config.get('UPDATE_DESTINATION_URL')
             
 
 class ConfigProd(ConfigBase):
@@ -62,4 +65,4 @@ class ConfigProd(ConfigBase):
         super().__init__()
 
     DEBUG = False
-    SA_API_URL = "https://api.to_something.com"
+    API_URL = config.get('UPDATE_DESTINATION_URL')
