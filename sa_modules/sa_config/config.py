@@ -56,7 +56,7 @@ class ConfigDev(ConfigBase):
         super().__init__()
 
     DEBUG = True
-    API_URL = config.get('UPDATE_DESTINATION_URL')
+    API_URL = config.get('UPDATE_DESTINATION_URL_DEV')
             
 
 class ConfigProd(ConfigBase):
@@ -66,3 +66,4 @@ class ConfigProd(ConfigBase):
 
     DEBUG = False
     API_URL = config.get('UPDATE_DESTINATION_URL')
+    API_ENDPOINT_TESTER = "https://endpointtester.dashanddata.com/posts"
